@@ -1,0 +1,29 @@
+version: '3'
+services:
+  enter-data:
+    build:
+      context: ./enter-data
+    ports:
+      - "3000:3000"
+  show-results:
+    build:
+      context: ./show-results
+    ports:
+      - "3001:3000"
+  authentication:
+    build:
+      context: ./authentication
+    ports:
+      - "3002:3000"
+  analytics:
+    build:
+      context: ./analytics
+  mongodb:
+    image: mongo
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: data-collection
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
