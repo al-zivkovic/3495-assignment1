@@ -12,12 +12,12 @@ services:
       - "3001:3000"
   authentication:
     build:
-      context: ./authentication
+      context: ./auth-svc
     ports:
       - "3002:3000"
   analytics:
     build:
-      context: ./analytics
+      context: ./analytics-svc
   mongodb:
     image: mongo
   mysql:
@@ -27,3 +27,4 @@ services:
       MYSQL_DATABASE: data-collection
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+
