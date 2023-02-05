@@ -1,20 +1,13 @@
-# Use node image as base
-FROM node:12
+FROM node:14.5.0-alpine3.12
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the package.json file to install dependencies
-COPY package*.json ./
+COPY app/package.json .
+COPY app/index.js .
+COPY app/public/style.css public/
 
-# Install dependencies
 RUN npm install
 
-# Copy the source code
-COPY . .
-
-# Expose the port for the app
 EXPOSE 3000
 
-# Start the app
-CMD [ "npm", "start" ]
+CMD ["npm", "start"]

@@ -20,11 +20,14 @@ services:
       context: ./analytics-svc
   mongodb:
     image: mongo
+    ports:
+      - "27017:27017"
   mysql:
     image: mysql
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: data-collection
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-
