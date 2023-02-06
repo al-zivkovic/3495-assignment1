@@ -8,8 +8,18 @@
 <body>
     <h1>Enter Data</h1>
     <form id="data-form">
-        <label>Data:</label>
-        <input type="text" id="data-input">
+        <div>
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name">
+        </div>
+        <div>
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name">
+        </div>
+        <div>
+            <label for="grade">Grade:</label>
+            <input type="text" id="grade" name="grade">
+        </div>
         <input type="button" value="Submit" id="submit-button">
     </form>
     <p id="response"></p>

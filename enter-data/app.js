@@ -13,16 +13,20 @@ const connection = mysql.createConnection({
 app.use(express.json());
 
 app.post("/submit-data", (req, res) => {
-    const { field1, field2 } = req.body;
-    // Add additional fields as needed
+        var first_name = req.body.first_name;
+        var last_name = req.body.last_name;
+        var grade = req.body.grade;
+        const sql = `INSERT INTO student_grades (first_name, last_name, grades) VALUES (?, ?, ?)`;
+        const values = [first_name, last_name, grade]
 
-    connection.query("INSERT INTO data (field1, field2) VALUES (?, ?)", [field1, field2], (error, results) => {
-        if (error) {
-            return res.status(500).json({ success: false, error });
-        }
-
-        res.json({ success: true });
-    });
+        connection.query(sql, values, (error, results) => {
+            if (error) {
+                return res.status(500).json({ success: false, error });
+            } else {
+                console.log(`Data inserted successfully.`);
+                res.json({ success: true });
+            }
+        })
 });
 
 app.listen(3000, () => {
