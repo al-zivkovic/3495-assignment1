@@ -6,8 +6,10 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY index.js ./
+
+COPY style.css ./
 
 EXPOSE 3001
 
-CMD ["npm", "start"]
+CMD ["node", "start"]
