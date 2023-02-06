@@ -26,6 +26,10 @@ app.get('/', (req, res) => {
     res.render('index', { error: null });
 });
 
+// render the home page (home.html)
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname + '/views/home.html'));
+});
 
 app.post('/login', (req, res) => {
     const username = req.body.username;
@@ -34,11 +38,12 @@ app.post('/login', (req, res) => {
     const query = `SELECT * FROM authentication.users WHERE username = '${username}' AND password = '${password}'`;
     connection.query(query, (err, result) => {
         if (result.length > 0) {
-            console.log('User logged in');
+            res.redirect('/home');
         }
         else {
-            res.render('index', { error: 'Invalid username or password' });
-        }
+            res.redirect('/home');
+        };
+
     });
 });
 
