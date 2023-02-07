@@ -2,7 +2,7 @@ import mysql.connector
 import pymongo
 
 db = mysql.connector.connect(
-    host='172.24.0.1',
+    host='mysql_db',
     user='root',
     password='password',
     database='data',
@@ -22,7 +22,7 @@ max_grade = {"max": max_value}
 min_grade = {'min': min_value}
 avg_grade = {'avg': avg_value}
 
-client = pymongo.MongoClient('mongodb://localhost:27017/')
+client = pymongo.MongoClient('mongodb://mongodb:27017/')
 db = client['analytics']
 collection = db['results']
 

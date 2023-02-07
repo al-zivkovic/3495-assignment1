@@ -2,8 +2,11 @@ const express = require("express");
 const mongo = require("mongodb");
 const app = express();
 
+app.set("view engine", "html");
+app.use(express.static(__dirname + "/views"));
+
 // Connect to MongoDB
-mongo.connect("mongodb://mongo:27017", (err, client) => {
+mongo.connect("mongodb://mongodb:27017", (err, client) => {
   if (err) {
     console.error(err);
     return;
@@ -49,7 +52,7 @@ mongo.connect("mongodb://mongo:27017", (err, client) => {
     });
   });
 
-  app.listen(3001, () => {
-    console.log("Show Results service is listening on port 3001");
+  app.listen(8004, () => {
+    console.log("Show Results service is listening on port 8004");
   });
 });

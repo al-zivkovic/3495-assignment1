@@ -4,14 +4,16 @@ services:
     build:
       context: ./enterdata
     ports:
-      - "3002:3000"
+      - "8001:5000"
     links:
       - mysql_db
   show-results:
     build:
       context: ./show-results
+    links:
+      - mongodb
     ports:
-      - "3001:3000"
+      - "8004:8004"
   authentication:
     build:
       context: ./authentication

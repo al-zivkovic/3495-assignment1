@@ -43,6 +43,6 @@ app.post("/submit-data", (req, res) => {
     })
 });
 
-app.listen(3002, () => {
-    console.log("Server started on port 3002");
+app.listen(8001, () => {
+    console.log("Server started on port 8001");
 });
