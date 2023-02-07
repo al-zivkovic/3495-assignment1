@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.use(bodyParser.json());
+app.set("view engine", "html");
+app.use(express.static(__dirname + "/views"));
 
 const connection = mysql.createConnection({
     host: "mysql_db",
@@ -21,7 +23,7 @@ connection.connect((err) => {
 });
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname + "index.html"));
+    res.render("index", { error: null });
 });
 
 app.post("/submit-data", (req, res) => {

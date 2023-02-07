@@ -4,23 +4,23 @@ const app = express();
 
 // Connect to MongoDB
 mongo.connect("mongodb://mongo:27017", (err, client) => {
-    if (err) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  const db = client.db("data");
+  const collection = db.collection("analytics");
+
+  app.get("/", (req, res) => {
+    collection.find({}).toArray((err, data) => {
+      if (err) {
         console.error(err);
+        res.send("Error getting data from MongoDB");
         return;
-    }
+      }
 
-    const db = client.db("data");
-    const collection = db.collection("analytics");
-
-    app.get("/", (req, res) => {
-        collection.find({}).toArray((err, data) => {
-            if (err) {
-                console.error(err);
-                res.send("Error getting data from MongoDB");
-                return;
-            }
-
-            res.send(`
+      res.send(`
         <html>
         <head>
           <link rel="stylesheet" type="text/css" href="style.css">
@@ -46,10 +46,10 @@ mongo.connect("mongodb://mongo:27017", (err, client) => {
         </body>
         </html>
       `);
-        });
     });
+  });
 
-    app.listen(3000, () => {
-        console.log("Show Results service is listening on port 3000");
-    });
+  app.listen(3001, () => {
+    console.log("Show Results service is listening on port 3001");
+  });
 });
