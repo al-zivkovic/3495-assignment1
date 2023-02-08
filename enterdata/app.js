@@ -26,10 +26,10 @@ app.get("/", (req, res) => {
     res.render("index", { error: null });
 });
 
-app.post("/submit-data", (req, res) => {
-    var first_name = req.body.first_name;
-    var last_name = req.body.last_name;
-    var grade = req.body.grade;
+app.post("/submit-data", function(req, res) {
+    const first_name = req.body.first_name;
+    const last_name = req.body.last_name;
+    const grade = req.body.grade;
     const sql = `INSERT INTO student_grades SET ?`;
 
     connection.query(sql, { first_name, last_name, grade }, function (error, results, fields) {
