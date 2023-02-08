@@ -9,8 +9,8 @@ db = mysql.connector.connect(
 )
 
 cursor = db.cursor()
+
 cursor.execute("SELECT grade FROM data.student_grades")
-print("Testing data...")
 
 data_list = cursor.fetchall()
 data = []
@@ -27,19 +27,19 @@ print(min_value)
 avg_value = sum(data) / len(data)
 print(avg_value)
 
-
 result = {
     "max": max_value,
     "min": min_value,
-    "avg": avg_value
+    "avg": "{:.2f}".format(avg_value)
 }
 
 client = pymongo.MongoClient('mongodb://mongodb:27017/')
 db = client['data']
 collection = db['analytics']
 
-reset = collection.delete_many({})
-print("Deleted old stats")
+collection.delete_many({})
+print("Deleted old stats...")
 
 collection.insert_one(result)
-print("Successfully written")
+print("Statistics created...")
+

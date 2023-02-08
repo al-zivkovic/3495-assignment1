@@ -1,4 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin: 40px;
+    background-color: #AEE2FF;
+}
+
 table {
+    margin: 0 auto;
+    width: 50%;
     border-collapse: collapse;
 }
 
@@ -6,6 +17,8 @@ th,
 td {
     border: 1px solid black;
     padding: 10px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 th {

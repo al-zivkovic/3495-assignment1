@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin: 40px;
+    background-color: #AEE2FF;
 }
 
 h1 {
@@ -60,11 +63,13 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #cdcccc;
 }
 
 li {
-    float: left;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4%;
+    padding: 10px;
 }
 
 li a {
@@ -73,6 +78,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    background-color: #cdcccc
 }
 
 li a:hover {

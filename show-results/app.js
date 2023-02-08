@@ -29,7 +29,7 @@ mongo.connect("mongodb://mongodb:27017", (err, client) => {
           <link rel="stylesheet" type="text/css" href="style.css">
         </head>
         <body>
-          <h1>Show Results</h1>
+          <h1><b>Show Results</b></h1>
           <table>
             <tr>
               <th>Max</th>
