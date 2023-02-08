@@ -2,10 +2,12 @@ const express = require("express");
 const mysql = require("mysql2");
 const path = require("path");
 const bodyParser = require("body-parser");
+const { request } = require('http');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "html");
 app.use(express.static(__dirname + "/views"));
 
@@ -13,8 +15,7 @@ const connection = mysql.createConnection({
     host: "mysql_db",
     user: "root",
     password: "password",
-    database: "data",
-    port: 3306
+    database: "data"
 });
 
 connection.connect(function(err) {
@@ -25,6 +26,7 @@ connection.connect(function(err) {
 app.get("/", (req, res) => {
     res.render("index", { error: null });
 });
+
 
 app.post("/submit-data", function(req, res) {
     const first_name = req.body.first_name;
@@ -44,3 +46,5 @@ app.post("/submit-data", function(req, res) {
 app.listen(8001, function() {
     console.log("Server started on port 8001");
 });
+
+
