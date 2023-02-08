@@ -32,17 +32,15 @@ mongo.connect("mongodb://mongodb:27017", (err, client) => {
           <h1>Show Results</h1>
           <table>
             <tr>
-              <th>Data Type</th>
               <th>Max</th>
               <th>Min</th>
               <th>Average</th>
             </tr>
             ${data.map(d => `
               <tr>
-                <td>${d.dataType}</td>
                 <td>${d.max}</td>
                 <td>${d.min}</td>
-                <td>${d.average}</td>
+                <td>${d.avg}</td>
               </tr>
             `).join("")}
           </table>
