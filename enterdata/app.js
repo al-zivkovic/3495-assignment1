@@ -30,18 +30,17 @@ app.post("/submit-data", function(req, res) {
     const first_name = req.body.first_name;
     const last_name = req.body.last_name;
     const grade = req.body.grade;
-    const sql = `INSERT INTO student_grades SET ?`;
+    const sql = "INSERT INTO student_grades(first_name, last_name, grade) VALUES (?, ?, ?)";
+    const values = [first_name, last_name, grade];
 
-    connection.query(sql, { first_name, last_name, grade }, function (error, results, fields) {
-        if (error) {
-            return res.status(500).json({ success: false, error });
-        } else {
-            console.log(`Data inserted successfully.`);
-            res.json({ success: true });
-        }
-    })
+    connection.query(sql, values, function(err, results) {
+        if (err) throw err;
+        console.log("Data inserted into the database.");
+        res.json({ success: true });
+     });
+    res.redirect("/");
 });
 
-app.listen(8001, () => {
+app.listen(8001, function() {
     console.log("Server started on port 8001");
 });
