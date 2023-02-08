@@ -24,26 +24,7 @@ connection.connect(function (err) {
 });
 
 app.get("/", (req, res) => {
-    res.send(`
-    <form action="/submit-data" method="post">
-        <div>
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name">
-        </div>
-        <div>
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name">
-        </div>
-        <br>
-        <div>
-            <label for="grade">Grade:</label>
-            <input type="number" id="grade" name="grade">
-        </div>
-        <div>
-        <button type="submit">Submit</button>
-        </div>
-    </form>
-  `);
+    res.render("index", { error: null });
 });
 
 
@@ -59,7 +40,6 @@ app.post("/submit-data", function (req, res) {
         console.log("Data inserted into the database.");
         res.json({ success: true });
     });
-    res.redirect("/");
 });
 
 app.listen(8001, function () {
