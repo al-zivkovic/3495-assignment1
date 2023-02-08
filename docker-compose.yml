@@ -1,12 +1,5 @@
 version: '3'
 services:
-  enterdata:
-    build:
-      context: ./enterdata
-    ports:
-      - "8001:5000"
-    links:
-      - mysql_db
   show-results:
     build:
       context: ./show-results
@@ -14,6 +7,13 @@ services:
       - mongodb
     ports:
       - "8004:8004"
+  enterdata:
+    build:
+      context: ./enterdata
+    ports:
+      - "8001:8001"
+    links:
+      - mysql_db
   authentication:
     build:
       context: ./authentication
