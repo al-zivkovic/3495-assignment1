@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-data
+  template:
+    metadata:
+      labels:
+        app: mysql-data
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        - name: MYSQL_DATABASE
+          value: data
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mysql-data
+          mountPath: /docker-entrypoint-initdb.d/
+      volumes:
+      - name: mysql-data
+        configMap:
+          name: mysql-data-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-data
+spec:
+  selector:
+    app: mysql-data
+  ports:
+  - name: mysql
+    port: 3306
+    targetPort: 3306
+  type: ClusterIP
