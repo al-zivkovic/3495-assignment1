@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: enter-data
-        image: us.gcr.io/assignment-2-382617/enter-data
+        image: us.gcr.io/assignment-2-382617/enterdata
         env:
         - name: MYSQL_USER
           valueFrom:
