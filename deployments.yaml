@@ -31,7 +31,7 @@ spec:
         - name: MYSQL_DATABASE
           value: "authentication"
         - name: MYSQL_HOST
-          value: "mysql-authentication"
+          value: 34.121.83.101
         ports:
         - containerPort: 3001
 ---
@@ -68,7 +68,7 @@ spec:
         - name: MYSQL_DATABASE
           value: "data"
         - name: MYSQL_HOST
-          value: "mysql-data"
+          value: 34.121.83.101
         ports:
         - containerPort: 8001
         imagePullPolicy: Always
