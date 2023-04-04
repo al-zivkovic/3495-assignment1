@@ -29,9 +29,9 @@ spec:
               name: mysql-credentials
               key: password
         - name: MYSQL_DATABASE
-          value: authentication
+          value: "authentication"
         - name: MYSQL_HOST
-          value: mysql_db
+          value: "mysql_db"
 ---
 apiVersion: v1
 kind: Service
