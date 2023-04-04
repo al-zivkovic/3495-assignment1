@@ -5,8 +5,7 @@ db = mysql.connector.connect(
     host='mysql_db',
     user='root',
     password='password',
-    database='data',
-    port=3307
+    database='data'
 )
 
 cursor = db.cursor()
