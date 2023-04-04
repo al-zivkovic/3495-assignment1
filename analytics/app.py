@@ -6,6 +6,7 @@ db = mysql.connector.connect(
     user='root',
     password='password',
     database='data',
+    port=3306
 )
 
 cursor = db.cursor()
@@ -42,4 +43,3 @@ print("Deleted old stats...")
 
 collection.insert_one(result)
 print("Statistics created...")
-
