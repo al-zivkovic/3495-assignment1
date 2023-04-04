@@ -1,0 +1,178 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication
+  labels:
+    app: authentication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentication
+  template:
+    metadata:
+      labels:
+        app: authentication
+    spec:
+      containers:
+      - name: authentication
+        image: us.gcr.io/assignment-2-382617/authentication
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: password
+        - name: MYSQL_DATABASE
+          value: "authentication"
+        - name: MYSQL_HOST
+          value: "mysql-authentication"
+        ports:
+        - containerPort: 3001
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: enter-data
+  labels:
+    app: enter-data
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: enter-data
+  template:
+    metadata:
+      labels:
+        app: enter-data
+    spec:
+      containers:
+      - name: enter-data
+        image: us.gcr.io/assignment-2-382617/enter-data
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-credentials
+              key: password
+        - name: MYSQL_DATABASE
+          value: "data"
+        - name: MYSQL_HOST
+          value: "mysql-data"
+        ports:
+        - containerPort: 8001
+        imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db
+  labels:
+    app: mysql-db
+spec:
+  selector:
+    matchLabels:
+      app: mysql-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-db
+    spec:
+      containers:
+        - name: mysql-db
+          image: us.gcr.io/assignment-2-382617/mysql:5.7
+          ports:
+            - containerPort: 3306
+              name: mysql-db
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: password
+            - name: MYSQL_HOST
+              value: mysql_db
+          volumeMounts:
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d/
+      volumes:
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-configmap
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analytics
+  labels:
+    app: analytics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: analytics
+  template:
+    metadata:
+      labels:
+        app: analytics
+    spec:
+      containers:
+      - name: analytics
+        image: us.gcr.io/assignment-2-382617/analytics
+        ports:
+        - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: show-results
+  labels:
+    app: show-results
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: show-results
+  template:
+    metadata:
+      labels:
+        app: show-results
+    spec:
+      containers:
+      - name: show-results
+        image: us.gcr.io/assignment-2-382617/show-results
+        ports:
+        - containerPort: 8004
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+  labels:
+    app: mongo-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-db
+  template:
+    metadata:
+      labels:
+        app: mongo-db
+    spec:
+      containers:
+      - name: mongo
+        image: us.gcr.io/assignment-2-382617/mongo
+        ports:
+        - containerPort: 27017

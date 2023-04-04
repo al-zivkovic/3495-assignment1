@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication
+  labels:
+    app: authentication
+spec:
+  ports:
+    - name: http
+      port: 3001
+      targetPort: 3001
+  selector:
+    app: authentication
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: enter-data
+  labels:
+    app: enter-data
+spec:
+  ports:
+    - name: http
+      port: 8001
+      targetPort: 8001
+  selector:
+    app: enter-data
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-db
+  labels:
+    app: mysql-db
+spec:
+  ports:
+    - name: mysql-db
+      port: 3306
+      targetPort: 3306
+  selector:
+    app: mysql-db
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: analytics
+  labels:
+    app: analytics
+spec:
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+  selector:
+    app: analytics
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: show-results
+  labels:
+    app: show-results
+spec:
+  ports:
+    - name: http
+      port: 8004
+      targetPort: 8004
+  selector:
+    app: show-results
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-db
+  labels:
+    app: mongo-db
+spec:
+  ports:
+    - name: mongo-db
+      port: 3001
+      targetPort: 3001
+  selector:
+    app: mongo-db
+  type: LoadBalancer
