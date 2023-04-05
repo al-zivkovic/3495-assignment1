@@ -125,7 +125,7 @@ metadata:
   labels:
     app: show-results
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: show-results
