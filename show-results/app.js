@@ -6,7 +6,7 @@ app.set("view engine", "html");
 app.use(express.static(__dirname + "/views"));
 
 // Connect to MongoDB
-mongo.connect("mongodb://root:root@34.173.80.48:27017", (err, client) => {
+mongo.connect("mongodb://root:root@35.226.137.164:27017", (err, client) => {
   if (err) {
     console.error(err);
     return;

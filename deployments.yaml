@@ -158,6 +158,6 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: us.gcr.io/assignment-2-382617/mongo
+        image: us.gcr.io/assignment-2-382617/mongodb
         ports:
         - containerPort: 27017
