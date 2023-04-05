@@ -15,6 +15,7 @@ cursor.execute("SELECT grade FROM data.student_grades")
 data_list = cursor.fetchall()
 data = []
 
+
 def post_grades():
     for number in data_list:
         data.append(number[0])
@@ -44,6 +45,7 @@ def post_grades():
 
     collection.insert_one(result)
     print("Statistics created...")
+
 
 while True:
     try:
