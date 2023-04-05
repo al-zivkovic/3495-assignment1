@@ -169,7 +169,7 @@ kind: ConfigMap
 metadata:
   name: mysql-initdb-configmap
 data:
-  mysql.init: |
+  init.db: |
     CREATE DATABASE data;
     USE data;
     CREATE TABLE student_grades (
