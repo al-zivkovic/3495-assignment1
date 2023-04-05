@@ -82,8 +82,8 @@ metadata:
 spec:
   ports:
     - name: mongodb
-      port: 3001
-      targetPort: 3001
+      port: 27017
+      targetPort: 27017
   selector:
     app: mongodb
   type: LoadBalancer
