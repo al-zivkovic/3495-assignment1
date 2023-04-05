@@ -3,15 +3,14 @@ import pymongo
 import time
 
 
-db = mysql.connector.connect(
-    host='34.121.83.101',
-    user='root',
-    password='password',
-    database='data'
-)
-
-
 def post_grades():
+    db = mysql.connector.connect(
+        host='34.121.83.101',
+        user='root',
+        password='password',
+        database='data'
+    )
+
     cursor = db.cursor()
     cursor.execute("SELECT grade FROM data.student_grades")
     data_list = cursor.fetchall()
@@ -46,10 +45,12 @@ def post_grades():
     print("Statistics created...")
 
     cursor.close()
-    time.sleep(5)
+
 
 while True:
     try:
         post_grades()
+        time.sleep(5)
     except Exception as e:
         print(f"Exception occurred: {e}")
+        time.sleep(5)
