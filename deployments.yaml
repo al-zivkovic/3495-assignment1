@@ -164,7 +164,7 @@ spec:
       volumes:
       - name: mongo-initdb
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mysql-initdb-configmap
