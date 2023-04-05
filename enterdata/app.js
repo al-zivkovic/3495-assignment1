@@ -12,7 +12,7 @@ app.set("view engine", "html");
 app.use(express.static(__dirname + "/views"));
 
 const connection = mysql.createConnection({
-    host: "mysql_db",
+    host: "34.121.83.101",
     user: "root",
     password: "password",
     database: "data"
