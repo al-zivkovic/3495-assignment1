@@ -76,14 +76,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-db
+  name: mongodb
   labels:
-    app: mongo-db
+    app: mongodb
 spec:
   ports:
-    - name: mongo-db
+    - name: mongodb
       port: 3001
       targetPort: 3001
   selector:
-    app: mongo-db
+    app: mongodb
   type: LoadBalancer

@@ -143,21 +143,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo
+  name: mongodb
   labels:
-    app: mongo-db
+    app: mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongo-db
+      app: mongodb
   template:
     metadata:
       labels:
-        app: mongo-db
+        app: mongodb
     spec:
       containers:
-      - name: mongo
+      - name: mongodb
         image: us.gcr.io/assignment-2-382617/mongo
         ports:
         - containerPort: 27017

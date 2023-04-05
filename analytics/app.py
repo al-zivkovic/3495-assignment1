@@ -2,7 +2,7 @@ import mysql.connector
 import pymongo
 
 db = mysql.connector.connect(
-    host='mysql_db',
+    host='34.121.83.101',
     user='root',
     password='password',
     database='data'

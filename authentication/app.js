@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'));
 
 const connection = mysql.createConnection({
-    host: 'mysql_db',
+    host: '34.121.83.101',
     user: 'root',
     password: 'password',
     database: 'authentication',
