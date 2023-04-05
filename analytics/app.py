@@ -2,12 +2,14 @@ import mysql.connector
 import pymongo
 import time
 
+
 db = mysql.connector.connect(
     host='34.121.83.101',
     user='root',
     password='password',
     database='data'
 )
+
 
 def post_grades():
     cursor = db.cursor()
