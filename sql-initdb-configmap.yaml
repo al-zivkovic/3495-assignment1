@@ -20,3 +20,6 @@ data:
         password VARCHAR(25) NOT NULL
     );
     INSERT INTO users (username, password) VALUES ('admin', 'password');
+    ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+    FLUSH PRIVILEGES;
+

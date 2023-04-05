@@ -31,7 +31,7 @@ spec:
         - name: MYSQL_DATABASE
           value: "authentication"
         - name: MYSQL_HOST
-          value: mysql-db
+          value: mysql_db
         ports:
         - containerPort: 3001
 ---
@@ -68,7 +68,7 @@ spec:
         - name: MYSQL_DATABASE
           value: "data"
         - name: MYSQL_HOST
-          value: mysql-db
+          value: mysql_db
         ports:
         - containerPort: 8001
         imagePullPolicy: Always
@@ -102,7 +102,7 @@ spec:
                   name: mysql-credentials
                   key: password
             - name: MYSQL_HOST
-              value: mysql-db
+              value: mysql_db
           volumeMounts:
             - name: mysql-initdb
               mountPath: /docker-entrypoint-initdb.d/
