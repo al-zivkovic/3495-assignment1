@@ -10,15 +10,10 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
-cursor.execute("SELECT grade FROM data.student_grades")
-
-data_list = cursor.fetchall()
-data = []
-
-
 def post_grades():
     cursor.execute("SELECT grade FROM data.student_grades")
     data_list = cursor.fetchall()
+    data = []
     
     for number in data_list:
         data.append(number[0])
@@ -30,24 +25,25 @@ def post_grades():
         min_value = min(data)
         print(min_value)
 
-        avg_value = sum(data) / len(data)
+        avg = sum(data) / len(data)
+        avg_value = "{:.2f}".format(avg)
         print(avg_value)
-
-        result = {
-            "max": max_value,
-            "min": min_value,
-            "avg": "{:.2f}".format(avg_value)
-        }
 
     client = pymongo.MongoClient('mongodb://mongodb:27017/')
     db = client['data']
     collection = db['analytics']
 
-    collection.delete_many({})
-    print("Deleted old stats...")
+    collection.update_one({}, {
+        "$set": {
+            "max": max_value,
+            "min": min_value,
+            "avg": avg_value
+        }
+    }, upsert=True)
 
-    collection.insert_one(result)
     print("Statistics created...")
+
+    return
 
 
 while True:
