@@ -10,16 +10,12 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
-cursor.execute("SELECT grade FROM data.student_grades")
-
-data_list = cursor.fetchall()
-data = []
-
 
 def post_grades():
     cursor.execute("SELECT grade FROM data.student_grades")
     data_list = cursor.fetchall()
-    
+    data = []
+
     for number in data_list:
         data.append(number[0])
 
