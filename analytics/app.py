@@ -17,6 +17,9 @@ data = []
 
 
 def post_grades():
+    cursor.execute("SELECT grade FROM data.student_grades")
+    data_list = cursor.fetchall()
+    
     for number in data_list:
         data.append(number[0])
 
