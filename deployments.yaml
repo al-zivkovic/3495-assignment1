@@ -19,15 +19,9 @@ spec:
         image: us.gcr.io/assignment-2-382617/authentication
         env:
         - name: MYSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: mysql-credentials
-              key: username
+          value: root
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-credentials
-              key: password
+          value: password
         - name: MYSQL_DATABASE
           value: "authentication"
         - name: MYSQL_HOST
@@ -56,15 +50,9 @@ spec:
         image: us.gcr.io/assignment-2-382617/enterdata
         env:
         - name: MYSQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: mysql-credentials
-              key: username
+          value: root
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-credentials
-              key: password
+          value: password
         - name: MYSQL_DATABASE
           value: "data"
         - name: MYSQL_HOST
@@ -97,10 +85,7 @@ spec:
               name: mysql-db
           env:
             - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-credentials
-                  key: password
+              value: password
             - name: MYSQL_HOST
               value: mysql-db
           volumeMounts:
