@@ -1,5 +1,6 @@
 import mysql.connector
 import pymongo
+import time
 
 db = mysql.connector.connect(
     host='34.121.83.101',
@@ -8,9 +9,8 @@ db = mysql.connector.connect(
     database='data'
 )
 
-cursor = db.cursor()
-
 def post_grades():
+    cursor = db.cursor()
     cursor.execute("SELECT grade FROM data.student_grades")
     data_list = cursor.fetchall()
     data = []
@@ -43,11 +43,11 @@ def post_grades():
 
     print("Statistics created...")
 
-    return
-
+    cursor.close()
+    time.sleep(5)
 
 while True:
     try:
         post_grades()
-    except ZeroDivisionError:
-        print("No values in table yet...")
+    except Exception as e:
+        print(f"Exception occurred: {e}")
