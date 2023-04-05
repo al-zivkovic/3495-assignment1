@@ -163,19 +163,3 @@ spec:
         - containerPort: 27017
       volumes:
       - name: mongo-initdb
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-initdb-configmap
-data:
-  init.db: |
-    CREATE DATABASE data;
-    USE data;
-    
-    CREATE TABLE student_grades (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        first_name VARCHAR(25) NOT NULL,
-        last_name VARCHAR(25) NOT NULL,
-        grade INT NOT NULL
-    );
